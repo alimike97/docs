@@ -25,7 +25,8 @@
           {
             "group": "Methodology",
             "pages": [
-              "governing-equations"
+              "governing-equations",
+              "test-equation"
             ]
           }
         ]
@@ -89,6 +90,6 @@
     }
   },
   "styling": {
-    "latex": true
+    "latex": false
   }
 }
