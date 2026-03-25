@@ -90,6 +90,6 @@
     }
   },
   "styling": {
-    "latex": true
+    "latex": false
   }
 }
