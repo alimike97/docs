@@ -38,7 +38,7 @@ The heat flux in the x-direction, $q_x$, is defined as
 q_x = -K \frac{\partial T}{\partial x} + \sum_{l=1}^N \rho D_l \frac{\partial Y_l}{\partial x} h_l + q_{source}
 ```
 
-where: \\
+where:
 
 - $K$ is the thermal conductivity,
 - $T$ is the temperature,
@@ -60,8 +60,8 @@ where $\mu$ is the molecular viscosity.
 
 # Source term
 
-The source term $H$ accounts for chemical reactions and includes one entry per species equation representing the production or destruction rate of the $l^th$ species, $\dot{\omega_l}$:
+The source term $H$ accounts for chemical reactions and includes one entry per species equation representing the production or destruction rate of the $l^th$ species, $\omega_l$:
 
 ```math
-H = \begin{pmatrix} 0 \\ 0 \\ 0 \\ \dot{\omega_l} \end{pmatrix}
+H = \begin{pmatrix} 0 \\ 0 \\ 0 \\ \omega_l \end{pmatrix}
 ```
