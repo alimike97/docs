@@ -19,14 +19,24 @@
               "index",
               "quickstart",
               "development",
-              "untitled-page"
+              "input_output",
+              "test-cases"
             ]
           },
           {
             "group": "Methodology",
             "pages": [
               "governing-equations",
-              "test-equation"
+              "time-integration",
+              "fluxes-reconstruction",
+              {
+                "group": "Reduced Order Modeling",
+                "pages": [
+                  "available-roms",
+                  "hyper-reduction",
+                  "adaptive-basis"
+                ]
+              }
             ]
           }
         ]
