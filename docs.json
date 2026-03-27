@@ -15,9 +15,9 @@
           {
             "group": "Getting started",
             "pages": [
-              "index",
+              "Introduction",
               "quickstart",
-              "development",
+              "requirements",
               "input_output",
               "test-cases"
             ]
