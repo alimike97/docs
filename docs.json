@@ -89,5 +89,9 @@
   },
   "styling": {
     "latex": true
+  },
+  "favicon": {
+    "light": "/images/romify_logo_new_light.png",
+    "dark": "/images/romify_logo_new_dark.png"
   }
 }
