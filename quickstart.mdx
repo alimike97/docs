@@ -18,12 +18,12 @@ description: "This guide walks you through running your first ROMify simulation 
     Navigate to the root ROMify directory. ROMify requires two inputs: (1) the working directory where results will be saved (it is recommended to use the test case folder), and (2) the input `.inp` file. The following command runs a 1D shock tube simulation.
 
     ```bash
-    python -O ./examples/sod_shock_tube ./examples/sod_shock_tube/input_file.inp
+    python -O ./romify.py ./examples/sod_shock_tube ./examples/sod_shock_tube/input_file.inp
     ```
   </Step>
   <Step title="Results">
-    ROMify saves each solution as a separate NumPy `.npy` file in the working directory. Depending on the solver mode, ROMify creates a results folder named after the mode; for the default full-order-model FOM mode, the folder name is `FOM_results`.
+    ROMify saves each solution as a separate binary NumPy `.npy` file in the working directory. Depending on the solver mode, ROMify creates a results folder named after the mode; for the default full-order-model FOM mode, the folder name is `FOM_results`.
 
-    For each snapshot, ROMify writes two solution files: one labeled `cons` and one labeled `prim`. The `cons` files contain conservative variables such as mass, momentum, total energy, and species mass fractions, while the `prim` files contain primitive variables such as density, velocity, pressure, and temperature.
+    For each snapshot, ROMify writes two solution files: one labeled `cons` and one labeled `prim`. The `cons` files contain conservative variables such as mass, momentum, total energy, and species mass fractions, while the `prim` files contain primitive variables such as density, velocity, pressure, temperature and species mass fractions.
   </Step>
 </Steps>

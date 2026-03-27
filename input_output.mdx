@@ -14,10 +14,10 @@ ROMify requires two inputs when executed from the command line:
 - Input file (`.inp`)\
   A configuration file that defines the simulation setup, including physical parameters, numerical settings, and ROM options.
 
-Example of Sod Shock Tube: 
+Example of Sod Shock Tube:
 
 ```bash
-python -O ./examples/sod_shock_tube ./examples/sod_shock_tube/input_file.inp
+python -O ./romify.py ./examples/sod_shock_tube ./examples/sod_shock_tube/input_file.inp
 ```
 
 ### 2. Input File Structure
@@ -33,7 +33,7 @@ This section provides a complete reference for all parameters available in the R
 | `solver_mode` | str | Main solver | FOM, PROM, AROM, QROM, NLROM |
 
 - FOM: full order model
-- PROM: projected ROM
+- PROM: linear projection ROM
 - AROM: adaptive ROM
 - QROM: quadratic ROM
 - NLROM: non-linear ROM
@@ -51,9 +51,9 @@ This section provides a complete reference for all parameters available in the R
 - SSPRK3: Strong Stability Preserv. RK3 – Explicit
 - BDF: Backward Difference Euler – Implicit
 
-<Callout>
+<Note>
   _The BDF method uses finite differences to compute the Jacobian in reacting flow cases, which might make it very stiff and hard to converge if the time step is too large._
-</Callout>
+</Note>
 
 **_Space Discretization_**
 
@@ -88,28 +88,28 @@ This section provides a complete reference for all parameters available in the R
 - periodic: left boundary = right side, and right boundary = left side.
 - wall: zero net velocity
 
-<Callout>
+<Info>
   ROMify uses ghost cells to apply boundary conditions and does not automatically assign values to them. It completely depends on the user’s CFD knowledge in imposing physically valid boundary conditions.
-</Callout>
+</Info>
 
 **_Initial Condition_**
 
-<Callout>
+<Tip>
   Initial conditions can be specified in two different ways:
 
   (1) Using a pre-generated profile saved in the same format as a ROMify primitive variable output file (`.npy`).
 
   (2) Defining a few intervals, with the location and primitive variables specified for each interval.
-</Callout>
+</Tip>
 
 | Parameter | Type | Description | Allowed Values |
 | --- | --- | --- | --- |
 | `ic_path` | str | Initial condition profile path | - |
 | `x_interval_ic` | float | Primitive variables specified for each domain interval | - |
 
-<Callout>
+<Info>
   If specifying variables using intervals, ROMify always requires values for mass fractions. For non-reacting flows, dummy values can be provided to `mass_frac_ic.`
-</Callout>
+</Info>
 
 **_Gas Model_**
 
@@ -151,9 +151,9 @@ Available variables to plot:
 | --- | --- | --- | --- |
 | `profiling` | bool | Profile performance while running | True/False |
 
-<Callout>
+<Info>
   The profiling results will be saved at the working directory as `.prof` format. It is recommended to use <u>snakeviz</u> to visualize the profiling results.
-</Callout>
+</Info>
 
 **_Injection_**
 
@@ -162,19 +162,19 @@ Available variables to plot:
 | `injection` | bool | Injection model | True/False |
 | `injection_state_dir` | str | Path to premixed injection gas state | - |
 
-<Callout>
+<Warning>
   Injection section is only applicable for 1D RDE test case and must be set as False for any other test case.
-</Callout>
+</Warning>
 
-<Callout>
-  The `injection_state_dir` must point to a `.npy` file which follows the same format as ROMify primitive variable output file. 
-</Callout>
+<Info>
+  The `injection_state_dir` must point to a `.npy` file which follows the same format as ROMify primitive variable output file.
+</Info>
 
 **_ROM Setup_**
 
-<Callout>
+<Warning>
   These properties will be read if any ROM methods are used.
-</Callout>
+</Warning>
 
 | Parameter | Type | Description | Allowed Values |
 | --- | --- | --- | --- |
@@ -183,7 +183,7 @@ Available variables to plot:
 | `arom_method` | str | Adaptive ROM method | direct, svd, isvd, ojas, grouse, past |
 | `pod_energy` | float | POD residual energy | \>0 (ex: 99.9) |
 | `hyper` | bool | Use hyper-reduction | True/False |
-| `hyper_method` | str | Hyper-reduction method | QDEIM, QDEIM\+R, GappyPODE, ECWS, FGS |
+| `hyper_method` | str | Hyper-reduction method | QDEIM, GappyPODE, ECWS, FGS |
 | `sampling_rate` | float | Rate of cells sampled in hyper-reduction in percentage | \>0 (ex: 2) |
 | `init_training_win` | int | Adaptive ROM initial window size | \>0 (ex:10) |
 | `unsampled_update_freq` | int | Adaptive ROM unsampled cells update frequency | \>0 (ex:10) |
@@ -195,14 +195,14 @@ Available variables to plot:
 | `rom_basis_dir` | str | Path to directory of precomputed basis | - |
 
 <Card title="ROM Methodology" icon="arrow-up-right-from-square" horizontal="false" href="reduced-order-modeling-rom">
-  Further details about any of these properties can be found in page Methodology under Reduced Order Modeling tab.
+  Further details about Reduced Order Modeling under Methodology section.
 </Card>
 
 # Outputs
 
 ### **1. Field Data**
 
-Unsteady field data represents the time evolution of an unsteady field at the time step iteration interval specified by `save_interval` in input file. Each field data is written in a NumPy binary file containing a single NumPy array with two dimensions. The first dimension is the number of variables, the second is the number of cells in the computational mesh. 
+Unsteady field data represents the time evolution of an unsteady field at the time step iteration interval specified by `save_interval` in input file. Each field data is written in a NumPy binary file containing a single NumPy array with two dimensions. The first dimension is the number of variables, the second is the number of cells in the computational mesh.
 
 Primitive variable indices are as following:
 
@@ -212,8 +212,8 @@ Primitive variable indices are as following:
 | 1 | velocity | \[m/s\] |
 | 2 | pressure | \[Pa\] |
 | 3 | temperature | \[K\] |
-| 4: | mass fractions (only in reacting flows) | \[-\] |
-| -1 | heat release rate | \[W/m3\] |
+| 4: | species mass fractions (only in reacting flows) | \[-\] |
+| -1 | heat release rate (only in reacting flows) | \[W/m3\] |
 
 Conservative variable indices are as following:
 
@@ -228,10 +228,10 @@ Conservative variable indices are as following:
 
 During simulation runtime, plotted visuals will be saved under `working_dir/plots` if `save_visual=True` in input file.
 
-<Callout>
+<Tip>
   This visualization serves only as a basic tool to inspect results during the initial stages. It is recommended that users implement their own customized post-processing scripts to visualize results according to their specific requirements.
-</Callout>
+</Tip>
 
-<Callout>
+<Warning>
   When ROMify is run on Linux, interactive plots cannot be displayed during the simulation due to Linux environment limitations. They can only be accessed after the visualizations are saved (i.e., `save_visual=True`).
-</Callout>
+</Warning>
