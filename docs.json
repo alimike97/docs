@@ -11,7 +11,7 @@
     "tabs": [
       {
         "tab": "Guides",
-        "groups": [
+        "pages": [
           {
             "group": "Getting started",
             "pages": [
@@ -37,7 +37,14 @@
                 ]
               }
             ]
-          }
+          },
+          {
+            "group": "Tutorials",
+            "pages": [
+              "build-and-run-rom-from-scratch"
+            ]
+          },
+          "licence"
         ]
       },
       {
