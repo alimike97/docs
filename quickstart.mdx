@@ -1,11 +1,11 @@
 ---
 title: "Quickstart"
-description: "This guide walks you through running your first ROMify simulation (sod shock tube) in just a few minutes."
+description: "This guide walks you through running your first CompFlowLab simulation (sod shock tube) in just a few minutes."
 ---
 
 <Steps>
   <Step title="Prerequisites">
-    ROMify can be run on both Windows and Linux. For Linux, using Anaconda is recommended. Python 3.9 or newer is required. Also, pip is needed for installing dependencies.
+    CompFlowLab can be run on both Windows and Linux. For Linux, using Anaconda is recommended. Python 3.9 or newer is required. Also, pip is needed for installing dependencies.
   </Step>
   <Step title="Install Dependencies">
     All required libraries are listed in `requirements.txt` located in the `misc_tools` directory. They can be installed using `pip`.
@@ -15,15 +15,15 @@ description: "This guide walks you through running your first ROMify simulation 
     ```
   </Step>
   <Step title="Run Your First Simulation">
-    Navigate to the root ROMify directory. ROMify requires two inputs: (1) the working directory where results will be saved (it is recommended to use the test case folder), and (2) the input `.inp` file. The following command runs a 1D shock tube simulation.
+    Navigate to the root CompFlowLab directory. CompFlowLab requires two inputs: (1) the working directory where results will be saved (it is recommended to use the test case folder), and (2) the input `.inp` file. The following command runs a 1D shock tube simulation.
 
     ```bash
-    python -O ./romify.py ./examples/sod_shock_tube ./examples/sod_shock_tube/input_file.inp
+    python -O ./compflowlab.py ./examples/sod_shock_tube ./examples/sod_shock_tube/input_file.inp
     ```
   </Step>
   <Step title="Results">
-    ROMify saves each solution as a separate binary NumPy `.npy` file in the working directory. Depending on the solver mode, ROMify creates a results folder named after the mode; for the default full-order-model FOM mode, the folder name is `FOM_results`.
+    CompFlowLab saves each solution as a separate binary NumPy `.npy` file in the working directory. Depending on the solver mode, CompFlowLab creates a results folder named after the mode; for the default full-order-model FOM mode, the folder name is `FOM_results`.
 
-    For each snapshot, ROMify writes two solution files: one labeled `cons` and one labeled `prim`. The `cons` files contain conservative variables such as mass, momentum, total energy, and species mass fractions, while the `prim` files contain primitive variables such as density, velocity, pressure, temperature and species mass fractions.
+    For each snapshot, CompFlowLab writes two solution files: one labeled `cons` and one labeled `prim`. The `cons` files contain conservative variables such as mass, momentum, total energy, and species mass fractions, while the `prim` files contain primitive variables such as density, velocity, pressure, temperature and species mass fractions.
   </Step>
 </Steps>

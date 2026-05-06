@@ -8,7 +8,7 @@ To substantially reduce the computational cost associated with model evaluation,
 \tilde{f} \approx V (S^T V)^{\dagger} S^T f
 ```
 
-Following are some of the methods available in ROMify to find S.
+Following are some of the methods available in CompFlowLab to find S.
 
 ## `GNAT`: Gauss–Newton Approximated Tensor
 
@@ -32,8 +32,8 @@ Implements the ECSW (Energy-Conserving Sampling and Weighting) method, which sel
 
 ## `FGS`: Feature-Guided Sampling
 
-This method places the sampling points at the regions corresponding to the highest gradients of representative features, it inherently covers the rows of the basis exhibiting high gradients, leads to better con- dition numbers and more stability.
+This method places the sampling points at the regions corresponding to the highest gradients of representative features, it inherently covers the rows of the basis exhibiting high gradients, leads to better condition numbers and more stability.
 
 <Warning>
-  The FGS method directly leverages the adaptive ROM framework, and currently it is not applicable in the static basis, static sampling methods in ROMify.
+  The FGS method directly leverages the adaptive ROM framework, and currently it is not applicable in the static basis, static sampling methods in CompFlowLab.
 </Warning>

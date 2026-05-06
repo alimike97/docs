@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "ROMify Documantation",
+  "name": "CompFlowLab Documantation",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -77,14 +77,10 @@
   },
   "footer": {
     "socials": {
-      "github": "https://github.com/alimike97/ROMify"
+      "github": "https://github.com/alimike97/CompFlowLab"
     }
   },
   "styling": {
     "latex": true
-  },
-  "favicon": {
-    "light": "/images/romify_logo_new_light.png",
-    "dark": "/images/romify_logo_new_dark.png"
   }
 }

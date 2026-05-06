@@ -2,7 +2,7 @@
 title: "Available Models"
 ---
 
-ROMify is primarily developed to test and rapidly implement ideas related to reduced order modeling (ROM) of fluids. The framework supports multiple types of ROMs, focusing primarily on intrusive ROMs, which have direct access to the solver rather than relying solely on training data. The following provides a brief overview of the methodology behind the ROMs available in ROMify.
+CompFlowLab is primarily developed to test and rapidly implement ideas related to reduced order modeling (ROM) of fluids. The framework supports multiple types of ROMs, focusing primarily on intrusive ROMs, which have direct access to the solver rather than relying solely on training data. The following provides a brief overview of the methodology behind the ROMs available in CompFlowLab.
 
 ## `PROM`: Linear POD basis
 
@@ -18,7 +18,7 @@ where $\tilde{q}$ serves as the approximation of $q$. The reference state, $q_{r
 q_{ref} = \frac{1}{\Delta T} \int q(t) dt.
 ```
 
-The trial basis matrix, $V$, and the scaling matrix, $P$. ROMify computes $V$ using the proper orthogonal decomposition (POD) and singular value decompostion (SVD).
+The trial basis matrix, $V$, and the scaling matrix, $P$. CompFlowLab computes $V$ using the proper orthogonal decomposition (POD) and singular value decompostion (SVD).
 
 ## `QROM`: Quadratic nonlinear basis
 
@@ -50,7 +50,7 @@ Using the reduced basis $V$ and $\bar{V}$, the time-dependent high-dimensional s
 \tilde{q}(t) = q_{ref} + P^{-1}(Vq_r(t)+\bar{V}\mathcal{N}(q_r(t)))
 ```
 
-where the nonlinear operator $\mathcal{N}$ serves as a data-driven machine learning model, representing the discrepancy between the full approximation and its affine part, $Vq_r(t)$. Gaussian process regression (GPR) and radial basis function (RBF) regression are available options in ROMify to learn this nonlinear mapping $\mathcal{N}$.
+where the nonlinear operator $\mathcal{N}$ serves as a data-driven machine learning model, representing the discrepancy between the full approximation and its affine part, $Vq_r(t)$. Gaussian process regression (GPR) and radial basis function (RBF) regression are available options in CompFlowLab to learn this nonlinear mapping $\mathcal{N}$.
 
 ## `AROM`: Adaptive ROM
 

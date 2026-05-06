@@ -12,7 +12,7 @@ where $q$ is the vector of conserved variables and $f(q)$ represents the spetial
 
 # Available Time Integration Schemes
 
-In ROMify, the time integration scheme can be specified by `time_scheme` in input file. Following are some of the available time integration schemes.
+In CompFlowLab, the time integration scheme can be specified by `time_scheme` in input file. Following are some of the available time integration schemes.
 
 ## `FDF`: Forward Difference Euler (Explicit)
 
@@ -75,5 +75,5 @@ q^{n} = q^{n-1} + \Delta t \, f(q^{n})
 - Requires solving a nonlinear system each time step
 
 <Info>
-      _The BDF method uses finite differences to compute the Jacobian in reacting flow cases, which might make it very stiff and hard to converge if the time step is too large._
+  _The BDF method uses finite differences to compute the Jacobian in reacting flow cases, which might make it very stiff and hard to converge if the time step is too large._
 </Info>

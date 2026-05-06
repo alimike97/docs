@@ -2,7 +2,7 @@
 title: "Build and Run ROM from scratch"
 ---
 
-ROMify provides a unified interface for full order simulations, data generation, and reduced order model construction. In this tutorial, a typical workflow will be demonstrated which consists of two main steps: running a full order model simulation to generate training data, then building a reduced order model from that data and testing different sampling methods.
+CompFlowLab provides a unified interface for full order simulations, data generation, and reduced order model construction. In this tutorial, a typical workflow will be demonstrated which consists of two main steps: running a full order model simulation to generate training data, then building a reduced order model from that data and testing different sampling methods.
 
 ## Generate Training Data
 
@@ -31,14 +31,14 @@ As this case is not an RDE case, the injection will be disabled (`injection     
 Now we can save this input file and run the simulation with the command:
 
 ```bash
-python -O ./romify.py ./examples/sod_shock_tube ./examples/sod_shock_tube/input_file.inp
+python -O ./compflowlab.py ./examples/sod_shock_tube ./examples/sod_shock_tube/input_file.inp
 ```
 
 ## Build a PROM
 
 Now that we have generated the training data, we can run the same case using a reduced-order model. To ensure a fair comparison, all settings related to discretization, physics, and time integration remain unchanged. However, we set `solver_mode = PROM` to enable the projected reduced-order model.
 
-The `training_data_dir` is directed to the folder containing the FOM results (.../ROMIFY/examples/sod\_shock\_tube/FOM\_results). To use all generated snapshots, we specify the training data limits to cover the entire simulation:
+The `training_data_dir` is directed to the folder containing the FOM results (.../compflowlab/examples/sod\_shock\_tube/FOM\_results). To use all generated snapshots, we specify the training data limits to cover the entire simulation:
 
 ```text
 training_start_iter     = 0
@@ -55,15 +55,15 @@ Hyper-reduction is enabled (`hyper = True`) using the QDEIM method (`hyper_metho
 Now again we can save this input file and run the simulation with the same command shown before:
 
 ```bash
-python -O ./romify.py ./examples/sod_shock_tube ./examples/sod_shock_tube/input_file.inp
+python -O ./compflowlab.py ./examples/sod_shock_tube ./examples/sod_shock_tube/input_file.inp
 ```
 
 ## Run an Adaptive ROM
 
 To run an adaptive ROM, the solver configuration remains identical to the FOM setup, except we change `solver_mode = AROM`. The direct method is used for basis adaptation (`arom_method = direct`). The adaptive ROM requires an initial window of FOM data to build the initial basis and will continuously evolve this rolling window to adapt the basis as new data becomes available. The size of this initial training window is specified as 10 using the parameter `init_training_win = 10`. Additionally, in the AROM algorithm, the unsampled points need to be updated at a specific frequency. This is controlled by `unsampled_update_freq = 10`, which updates the unsampled points every 10 time steps.
 
-Similarly, Now again we can run the simulation with the command: 
+Similarly, Now again we can run the simulation with the command:
 
 ```bash
-python -O ./romify.py ./examples/sod_shock_tube ./examples/sod_shock_tube/input_file.inp
+python -O ./compflowlab.py ./examples/sod_shock_tube ./examples/sod_shock_tube/input_file.inp
 ```

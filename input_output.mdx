@@ -1,13 +1,13 @@
 ---
 title: "Inputs, Configuration & Outputs"
-description: "ROMify simulations are configured through input files and produce solution data stored in a specified working directory. This section describes the required inputs, their structure, and the generated outputs."
+description: "CompFlowLab simulations are configured through input files and produce solution data stored in a specified working directory. This section describes the required inputs, their structure, and the generated outputs."
 ---
 
 # Inputs
 
 ### **1. Command-Line Arguments**
 
-ROMify requires two inputs when executed from the command line:
+CompFlowLab requires two inputs when executed from the command line:
 
 - Working directory\
   Directory where all simulation outputs will be stored. It is recommended to use the test case folder.
@@ -17,14 +17,14 @@ ROMify requires two inputs when executed from the command line:
 Example of Sod Shock Tube:
 
 ```bash
-python -O ./romify.py ./examples/sod_shock_tube ./examples/sod_shock_tube/input_file.inp
+python -O ./compflowlab.py ./examples/sod_shock_tube ./examples/sod_shock_tube/input_file.inp
 ```
 
 ### 2. Input File Structure
 
 The `.inp` file contains all parameters required to run a simulation. It is organized into logical sections, each controlling a specific part of the simulation.
 
-This section provides a complete reference for all parameters available in the ROMify input file. Parameters are grouped by section and include type, allowed values, and descriptions.
+This section provides a complete reference for all parameters available in the CompFlowLab input file. Parameters are grouped by section and include type, allowed values, and descriptions.
 
 **_Solver_**
 
@@ -89,7 +89,7 @@ This section provides a complete reference for all parameters available in the R
 - wall: zero net velocity
 
 <Info>
-  ROMify uses ghost cells to apply boundary conditions and does not automatically assign values to them. It completely depends on the user’s CFD knowledge in imposing physically valid boundary conditions.
+  CompFlowLab uses ghost cells to apply boundary conditions and does not automatically assign values to them. It completely depends on the user’s CFD knowledge in imposing physically valid boundary conditions.
 </Info>
 
 **_Initial Condition_**
@@ -97,7 +97,7 @@ This section provides a complete reference for all parameters available in the R
 <Tip>
   Initial conditions can be specified in two different ways:
 
-  (1) Using a pre-generated profile saved in the same format as a ROMify primitive variable output file (`.npy`).
+  (1) Using a pre-generated profile saved in the same format as a CompFlowLab primitive variable output file (`.npy`).
 
   (2) Defining a few intervals, with the location and primitive variables specified for each interval.
 </Tip>
@@ -108,7 +108,7 @@ This section provides a complete reference for all parameters available in the R
 | `x_interval_ic` | float | Primitive variables specified for each domain interval | - |
 
 <Info>
-  If specifying variables using intervals, ROMify always requires values for mass fractions. For non-reacting flows, dummy values can be provided to `mass_frac_ic.`
+  If specifying variables using intervals, CompFlowLab always requires values for mass fractions. For non-reacting flows, dummy values can be provided to `mass_frac_ic.`
 </Info>
 
 **_Gas Model_**
@@ -167,7 +167,7 @@ Available variables to plot:
 </Warning>
 
 <Info>
-  The `injection_state_dir` must point to a `.npy` file which follows the same format as ROMify primitive variable output file.
+  The `injection_state_dir` must point to a `.npy` file which follows the same format as CompFlowLab primitive variable output file.
 </Info>
 
 **_ROM Setup_**
@@ -233,5 +233,5 @@ During simulation runtime, plotted visuals will be saved under `working_dir/plot
 </Tip>
 
 <Warning>
-  When ROMify is run on Linux, interactive plots cannot be displayed during the simulation due to Linux environment limitations. They can only be accessed after the visualizations are saved (i.e., `save_visual=True`).
+  When CompFlowLab is run on Linux, interactive plots cannot be displayed during the simulation due to Linux environment limitations. They can only be accessed after the visualizations are saved (i.e., `save_visual=True`).
 </Warning>
